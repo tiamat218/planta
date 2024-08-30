@@ -1,0 +1,24 @@
+@font-face {
+    font-family: 'AeogoPixellated';
+    src: url('./font/TMT-Paint-Regular.otf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  body {
+    font-family: 'AeogoPixellated', sans-serif;
+    color: white;
+    text-shadow: -2px -2px 0 #000,   
+                 2px -2px 0 #000,   
+                 -2px 2px 0 #000,   
+                 2px 2px 0 #000;    
+    background-color: #333;
+    font-size: 28px !important;
+  }
+  
+  
+  p {
+    margin: 1rem 0;
+  }
+  
+  
