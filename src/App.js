@@ -1,3 +1,4 @@
+// src/App.js
 import React, { useRef, useEffect } from 'react';
 import './global.css';
 import './App.css'; // Spezifische Styles
@@ -14,12 +15,13 @@ import BaumImage from './assets/bilder/baum.png';
 import BarImage from './assets/bilder/bar.png';
 import RoadImage from './assets/bilder/Road4.png';
 
+// Importiere die TokenProgressLive-Komponente
+import TokenProgressLive from './TokenProgressLive';
+
 function App() {
   const topRef = useRef(null);
-  const contentRef = useRef(null);
+  const roadmapRef = useRef(null); // Neue Referenz für Roadmap
   const animationWrapperRef = useRef(null);
-
-  const SCROLL_DURATION = 1000;
 
   useEffect(() => {
     if (animationWrapperRef.current) {
@@ -27,48 +29,29 @@ function App() {
     }
   }, []);
 
-  const smoothScrollTo = (targetPosition, duration) => {
-    const startPosition = window.pageYOffset;
-    const distance = targetPosition - startPosition;
-    let startTime = null;
-
-    function animation(currentTime) {
-      if (startTime === null) startTime = currentTime;
-      const timeElapsed = currentTime - startTime;
-      const run = easeInOutQuad(
-        timeElapsed,
-        startPosition,
-        distance,
-        duration
-      );
-      window.scrollTo(0, run);
-      if (timeElapsed < duration) requestAnimationFrame(animation);
-    }
-
-    function easeInOutQuad(t, b, c, d) {
-      t /= d / 2;
-      if (t < 1) return (c / 2) * t * t + b;
-      t--;
-      return (-c / 2) * (t * (t - 2) - 1) + b;
-    }
-
-    requestAnimationFrame(animation);
-  };
-
-  const scrollToContent = () => {
-    if (contentRef.current) {
-      const targetPosition = contentRef.current.offsetTop;
-      smoothScrollTo(targetPosition, SCROLL_DURATION);
-    }
-  };
-
   const scrollToTop = () => {
-    smoothScrollTo(0, SCROLL_DURATION);
+    if (topRef.current) {
+      topRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const scrollToRoadmap = () => {
+    if (roadmapRef.current) {
+      roadmapRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (
     <div className="appContainer" ref={topRef}>
-      <div ref={animationWrapperRef} className="animationWrapper slide-in">
+      {/* Animation Wrapper */}
+      <div
+        ref={animationWrapperRef}
+        className="animationWrapper slide-in"
+        style={{ position: 'relative', minHeight: '100vh' }} // Setze min-height: 100vh
+      >
+        {/* TokenProgressLive-Komponente */}
+        <TokenProgressLive />
+
         {/* Schild-Bild */}
         <div className="signImageContainer">
           <img src={SignImage} alt="SIGN" className="signImage" />
@@ -101,28 +84,32 @@ function App() {
           DONE RIGHT!
         </p>
       </div>
-      {/* Buttons */}
+
+      {/* Navigations-Buttons */}
       <div className="buttonContainer">
         <img
-          src=""
+          src="./assets/bilder/roadmap.png" // Stelle sicher, dass der Pfad korrekt ist
           alt="ROADMAP"
           className="button"
-          onClick={scrollToContent}
+          onClick={scrollToRoadmap}
         />
-        <img src="" alt="TOKENOMICS" className="button" />
-        <img src="" alt="UTILITY" className="button" />
-        <img src="" alt="FEATURES" className="button" />
-        <img src="" alt="WIKI" className="button" />
-        <img src="" alt="FAQ" className="button" />
+        <img src="./assets/bilder/tokenomics.png" alt="TOKENOMICS" className="button" />
+        <img src="./assets/bilder/utility.png" alt="UTILITY" className="button" />
+        <img src="./assets/bilder/features.png" alt="FEATURES" className="button" />
+        <img src="./assets/bilder/wiki.png" alt="WIKI" className="button" />
+        <img src="./assets/bilder/faq.png" alt="FAQ" className="button" />
       </div>
+
       {/* Logo */}
       <div className="logoContainer" onClick={scrollToTop}>
         <img src={LogoImage} alt="Logo" className="logo" />
       </div>
-      {/* Charakter-Bild */}
+
+      {/* Charakterbild */}
       <div className="charImageContainer">
         <img src={CharImage} alt="Char" className="charImage" />
       </div>
+
       {/* Seitenbilder */}
       <div className="sideImageContainer">
         <img src={BaumImage} alt="Side" className="sideImage" />
@@ -134,12 +121,14 @@ function App() {
           className="mirroredSideImage"
         />
       </div>
+
       {/* Bar-Bild */}
       <div className="barContainer">
         <img src={BarImage} alt="bar" className="barImage" />
       </div>
-      {/* Inhaltsbereich */}
-      <div ref={contentRef} className="content">
+
+      {/* Roadmap Section */}
+      <div ref={roadmapRef} className="content"> {/* Referenz für Roadmap */}
         {/* Overlay Container */}
         <div className="overlayContainer">
           <img src={RoadImage} alt="Road4" className="overlayImage" />
@@ -148,6 +137,14 @@ function App() {
         <div className="whiteContainer"></div>
         <p style={{ marginTop: '0vh' }}>.</p>
       </div>
+
+      {/* Weitere Abschnitte können hier hinzugefügt werden */}
+      {/* Beispiel:
+      <div className="anotherSection">
+        <h2>Another Section</h2>
+        <p>Content goes here...</p>
+      </div>
+      */}
     </div>
   );
 }

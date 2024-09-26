@@ -1,8 +1,11 @@
+/* src/App.css */
+
 /* Globale Styles */
 html, body {
   height: 100%;
   margin: 0;
   padding: 0;
+  scroll-behavior: smooth; /* Fügt sanftes Scrollen global hinzu */
 }
 
 /* Spezifische Styles für App.js */
@@ -10,7 +13,7 @@ html, body {
 .appContainer {
   min-height: 100%;
   position: relative;
-  overflow: hidden;
+  /* overflow: hidden; */ /* Entfernt, um Scrollen zu ermöglichen */
   background-image: url('./assets/bilder/himmel.png');
   background-size: cover;
   background-position: center;
@@ -23,6 +26,8 @@ html, body {
 .animationWrapper {
   position: relative;
   width: 100%;
+  min-height: 100vh; /* Hinzugefügt */
+  /* height: 100vh; */ /* Entfernen oder anpassen */
   z-index: 2;
 }
 
@@ -213,7 +218,7 @@ html, body {
 
 .overlayContainer {
   position: relative;
-  top: 100vh;
+  /* top: 100vh; */ /* Entfernt, um die Positionierung zu korrigieren */
   width: 100%;
   height: 100vh;
   z-index: 2;
@@ -223,10 +228,84 @@ html, body {
 
 .overlayImage {
   position: absolute;
-  top: 1000;
+  top: 0; /* Ändern von 1000px auf 0 */
   left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   z-index: 2;
+}
+
+/* Neue Klassen für TokenProgressLive */
+.progressOverlay {
+  position: absolute; /* Absolut positioniert relativ zum übergeordneten Container */
+  top: 10px; /* Beispiel: 10 Pixel vom oberen Rand des Containers */
+  left: 50%; /* Zentriert horizontal */
+  transform: translate(-50%, 0); /* Zentriert nur horizontal */
+  width: auto;
+  height: auto;
+  pointer-events: none; /* Verhindert Interaktionen mit dem Overlay */
+  z-index: 9999; /* Sicherstellen, dass das Overlay im Vordergrund liegt */
+}
+
+.background-image {
+  display: block;
+  width: 500px; /* Passe die Größe des Bildes an */
+  height: auto; /* Erhaltung des Seitenverhältnisses */
+  opacity: 1; /* Volle Sichtbarkeit */
+  z-index: 2; /* Bild über dem restlichen Inhalt */
+  position: relative;
+}
+
+.progress-content {
+  position: absolute;
+  top: 50%; /* Zentriert innerhalb der Overlay */
+  left: 50%;
+  transform: translate(-50%, -50%); /* Exakte Zentrierung der Progressbar innerhalb des Bildes */
+  z-index: 1; /* Progressbar unter dem Bildrahmen */
+  height: 100%; /* Anpassung für bessere Platzierung */
+  width: 91%; /* Breite der Progressbar im Verhältnis zum Bild */
+  text-align: center;
+}
+
+.progress-bar-container {
+  width: 100%; /* Progressbar nimmt die gesamte Breite des Containers ein */
+  height: 32px; /* Anpassbare Höhe der Progressbar */
+  border: 1px solid #4caf50; /* Umrandung der Progressbar */
+  border-radius: 5px; /* Runde Ecken */
+  background-color: rgba(109, 172, 111, 0.39); /* Leichte grüne Hintergrundfarbe */
+  margin: 0; /* Kein Abstand zur Umrandung */
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background-color: #71d474; /* Farbe der gefüllten Progressbar */
+  border-radius: 5px;
+  transition: width 0.5s ease-in-out;
+}
+
+.balance-text,
+.error-text {
+  font-size: 1.5rem; /* Flexible Schriftgröße */
+  color: #fff; /* Innenfarbe des Textes */
+  margin-top: 10px;
+  font-style: normal; /* Entfernt Kursiv */
+  text-align: center;
+  
+  /* Erweiterte Text-Umrandung ohne Pixel-Gaps */
+  text-shadow:
+    -1px -1px 0 #000,
+     1px -1px 0 #000,
+    -1px  1px 0 #000,
+     1px  1px 0 #000,
+     0px -1px 0 #000,
+     0px  1px 0 #000,
+    -1px  0px 0 #000,
+     1px  0px 0 #000;
+}
+
+/* Zusätzliche Stile für Fehlermeldungen */
+.error-text {
+  color: red; /* Farbe des Fehlermeldungstextes */
+  font-weight: bold;
 }
