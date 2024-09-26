@@ -1,0 +1,52 @@
+/* src/PresaleButton.css */
+
+.presaleButtonContainer {
+    position: fixed;
+    bottom: 2vh;
+    right: 2vw;
+    z-index: 6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .connectWalletButton,
+  .sendSOLButton {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .connectWalletButton {
+    background-color: #4caf50;
+    color: white;
+  }
+  
+  .connectWalletButton:hover {
+    background-color: #45a049;
+  }
+  
+  .sendSOLButton {
+    background-color: #008CBA;
+    color: white;
+  }
+  
+  .sendSOLButton:hover {
+    background-color: #007BB5;
+  }
+  
+  .sendSOLButton:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+  
+  .transactionStatus {
+    font-size: 0.9rem;
+    color: #333;
+    text-align: center;
+  }
+  

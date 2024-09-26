@@ -18,9 +18,13 @@ import RoadImage from './assets/bilder/Road4.png';
 // Importiere die TokenProgressLive-Komponente
 import TokenProgressLive from './TokenProgressLive';
 
+// Importiere die PresaleButton-Komponente
+import PresaleButton from './PresaleButton';
+
 function App() {
   const topRef = useRef(null);
-  const roadmapRef = useRef(null); // Neue Referenz für Roadmap
+  const roadmapRef = useRef(null); // Referenz für Roadmap
+  const tokenomicsRef = useRef(null); // Neue Referenz für Tokenomics
   const animationWrapperRef = useRef(null);
 
   useEffect(() => {
@@ -29,15 +33,24 @@ function App() {
     }
   }, []);
 
+  // Funktion zum Scrollen zum oberen Abschnitt
   const scrollToTop = () => {
     if (topRef.current) {
       topRef.current.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
+  // Funktion zum Scrollen zum Roadmap-Abschnitt
   const scrollToRoadmap = () => {
     if (roadmapRef.current) {
       roadmapRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  // Funktion zum Scrollen zum Tokenomics-Abschnitt
+  const scrollToTokenomics = () => {
+    if (tokenomicsRef.current) {
+      tokenomicsRef.current.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -93,7 +106,12 @@ function App() {
           className="button"
           onClick={scrollToRoadmap}
         />
-        <img src="./assets/bilder/tokenomics.png" alt="TOKENOMICS" className="button" />
+        <img
+          src="./assets/bilder/tokenomics.png"
+          alt="TOKENOMICS"
+          className="button"
+          onClick={scrollToTokenomics} // Füge onClick hinzu
+        />
         <img src="./assets/bilder/utility.png" alt="UTILITY" className="button" />
         <img src="./assets/bilder/features.png" alt="FEATURES" className="button" />
         <img src="./assets/bilder/wiki.png" alt="WIKI" className="button" />
@@ -128,7 +146,7 @@ function App() {
       </div>
 
       {/* Roadmap Section */}
-      <div ref={roadmapRef} className="content"> {/* Referenz für Roadmap */}
+      <div ref={roadmapRef} className="roadmapSection"> {/* Referenz für Roadmap */}
         {/* Overlay Container */}
         <div className="overlayContainer">
           <img src={RoadImage} alt="Road4" className="overlayImage" />
@@ -138,13 +156,13 @@ function App() {
         <p style={{ marginTop: '0vh' }}>.</p>
       </div>
 
-      {/* Weitere Abschnitte können hier hinzugefügt werden */}
-      {/* Beispiel:
-      <div className="anotherSection">
-        <h2>Another Section</h2>
-        <p>Content goes here...</p>
+      {/* Tokenomics Section */}
+      <div ref={tokenomicsRef} className="tokenomicsSection">
+
       </div>
-      */}
+
+      {/* Presale Button Komponente */}
+      <PresaleButton />
     </div>
   );
 }

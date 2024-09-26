@@ -5,7 +5,7 @@
   position: fixed; /* Fixiert das Overlay relativ zum Viewport */
   top: 680px; /* Setze diesen Wert höher, um das Overlay weiter oben zu positionieren */
   left: 46%; /* Zentriert horizontal */
-  transform: translate(-50%, 0) scale(2); /* Entferne die vertikale Verschiebung */
+  transform: translate(-50%, 0) scale(2.5); /* Entferne die vertikale Verschiebung */
   width: auto;
   height: auto;
   pointer-events: none; /* Verhindert Interaktionen mit dem Overlay */
@@ -39,9 +39,7 @@
 .progress-bar-container {
   width: 100%; /* Progressbar nimmt die gesamte Breite des Containers ein */
   height: 32px; /* Anpassbare Höhe der Progressbar */
-  border: 1px solid #4caf50; /* Umrandung der Progressbar */
-  border-radius: 5px; /* Runde Ecken */
-  background-color: rgba(109, 172, 111, 0.39); /* Leichte grüne Hintergrundfarbe */
+  background-color: rgba(129, 160, 125, 0.26); /* Leichte grüne Hintergrundfarbe */
   margin: 0; /* Kein Abstand zur Umrandung */
 }
 
@@ -49,10 +47,8 @@
 .progress-bar-fill {
   height: 100%;
   background-color: #94ee97; /* Farbe der gefüllten Progressbar */
-  border-radius: 5px;
   transition: width 0.5s ease-in-out;
 }
-/* src/components/TokenProgressLive.css */
 
 .balance-text,
 .error-text {
@@ -74,3 +70,8 @@
      1px  0px 0 #000;
 }
 
+/* Zusätzliche Stile für Fehlermeldungen */
+.error-text {
+  color: red; /* Farbe des Fehlermeldungstextes */
+  font-weight: bold;
+}

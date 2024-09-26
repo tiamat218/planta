@@ -236,76 +236,75 @@ html, body {
   z-index: 2;
 }
 
-/* Neue Klassen für TokenProgressLive */
-.progressOverlay {
-  position: absolute; /* Absolut positioniert relativ zum übergeordneten Container */
-  top: 10px; /* Beispiel: 10 Pixel vom oberen Rand des Containers */
-  left: 50%; /* Zentriert horizontal */
-  transform: translate(-50%, 0); /* Zentriert nur horizontal */
-  width: auto;
-  height: auto;
-  pointer-events: none; /* Verhindert Interaktionen mit dem Overlay */
-  z-index: 9999; /* Sicherstellen, dass das Overlay im Vordergrund liegt */
+/* Neue Klassen für den SOL-Senden Button */
+.sendSOLContainer {
+  position: fixed;
+  bottom: 2vh;
+  right: 2vw;
+  z-index: 6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.background-image {
-  display: block;
-  width: 500px; /* Passe die Größe des Bildes an */
-  height: auto; /* Erhaltung des Seitenverhältnisses */
-  opacity: 1; /* Volle Sichtbarkeit */
-  z-index: 2; /* Bild über dem restlichen Inhalt */
-  position: relative;
-}
-
-.progress-content {
-  position: absolute;
-  top: 50%; /* Zentriert innerhalb der Overlay */
-  left: 50%;
-  transform: translate(-50%, -50%); /* Exakte Zentrierung der Progressbar innerhalb des Bildes */
-  z-index: 1; /* Progressbar unter dem Bildrahmen */
-  height: 100%; /* Anpassung für bessere Platzierung */
-  width: 91%; /* Breite der Progressbar im Verhältnis zum Bild */
-  text-align: center;
-}
-
-.progress-bar-container {
-  width: 100%; /* Progressbar nimmt die gesamte Breite des Containers ein */
-  height: 32px; /* Anpassbare Höhe der Progressbar */
-  border: 1px solid #4caf50; /* Umrandung der Progressbar */
-  border-radius: 5px; /* Runde Ecken */
-  background-color: rgba(109, 172, 111, 0.39); /* Leichte grüne Hintergrundfarbe */
-  margin: 0; /* Kein Abstand zur Umrandung */
-}
-
-.progress-bar-fill {
-  height: 100%;
-  background-color: #71d474; /* Farbe der gefüllten Progressbar */
+.connectWalletButton,
+.sendSOLButton {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
   border-radius: 5px;
-  transition: width 0.5s ease-in-out;
+  cursor: pointer;
+  margin-bottom: 10px;
+  transition: background-color 0.3s ease;
 }
 
-.balance-text,
-.error-text {
-  font-size: 1.5rem; /* Flexible Schriftgröße */
-  color: #fff; /* Innenfarbe des Textes */
-  margin-top: 10px;
-  font-style: normal; /* Entfernt Kursiv */
+.connectWalletButton {
+  background-color: #4caf50;
+  color: white;
+}
+
+.connectWalletButton:hover {
+  background-color: #45a049;
+}
+
+.sendSOLButton {
+  background-color: #008CBA;
+  color: white;
+}
+
+.sendSOLButton:hover {
+  background-color: #007BB5;
+}
+
+.sendSOLButton:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.transactionStatus {
+  font-size: 0.9rem;
+  color: #333;
   text-align: center;
-  
-  /* Erweiterte Text-Umrandung ohne Pixel-Gaps */
-  text-shadow:
-    -1px -1px 0 #000,
-     1px -1px 0 #000,
-    -1px  1px 0 #000,
-     1px  1px 0 #000,
-     0px -1px 0 #000,
-     0px  1px 0 #000,
-    -1px  0px 0 #000,
-     1px  0px 0 #000;
 }
 
-/* Zusätzliche Stile für Fehlermeldungen */
-.error-text {
-  color: red; /* Farbe des Fehlermeldungstextes */
-  font-weight: bold;
+/* Tokenomics Section */
+.tokenomicsSection {
+  position: relative;
+  min-height: 100vh;
+  padding: 2vh 5vw;
+  background-color: #f5f5f5; /* Beispielhintergrundfarbe */
+  color: #333;
+  z-index: 1;
 }
+
+.tokenomicsSection h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.tokenomicsSection p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+/* Optional: Weitere Styles für den Tokenomics-Abschnitt */
