@@ -4,16 +4,19 @@ import './global.css';
 import './App.css'; // Spezifische Styles
 
 // Importieren der Bilder aus dem src-Verzeichnis
-import HimmelImage from './assets/bilder/himmel.png';
+import HimmelImage from './assets/bilder/Himmel2.jpg';
 import SignImage from './assets/bilder/Sign.png';
 import BodenImage from './assets/bilder/boden.png';
-import TeleIcon from './assets/bilder/tele.png';
-import XIcon from './assets/bilder/x.png';
+import TeleIcon from './assets/bilder/teleBV.png';
+import XIcon from './assets/bilder/xB.png';
 import LogoImage from './assets/bilder/Logo.png';
 import CharImage from './assets/bilder/CharSolo.png';
 import BaumImage from './assets/bilder/baum.png';
 import BarImage from './assets/bilder/bar.png';
 import RoadImage from './assets/bilder/Road4.png';
+import buttonBackground from './assets/bilder/kleinebox.png'
+
+import ListingBox from './assets/bilder/kleineboxGROSS.png'
 
 // Importiere die TokenProgressLive-Komponente
 import TokenProgressLive from './TokenProgressLive';
@@ -54,6 +57,9 @@ function App() {
     }
   };
 
+
+  
+
   return (
     <div className="appContainer" ref={topRef}>
       {/* Animation Wrapper */}
@@ -65,6 +71,38 @@ function App() {
         {/* TokenProgressLive-Komponente */}
         <TokenProgressLive />
 
+        <div className="ListingBox">
+          <img src= {ListingBox} className="ListingBox" />
+          <p className="ListingText">COMING SOON...</p>
+        </div>
+
+        <div className="ListingBox2">
+          <img src= {ListingBox} className="ListingBox2" />
+          <p className="ListingText">COMING SOON...</p>
+        </div>
+
+        <div className="ListingBox3">
+          <img src= {ListingBox} className="ListingBox3" />
+          <p className="ListingText">COMING SOON...</p>
+        </div>
+
+        <div className="ListingBox4">
+          <img src= {ListingBox} className="ListingBox4" />
+          <p className="ListingText">COMING SOON...</p>
+        </div>
+
+        <div className="ListingBox5">
+          <img src= {ListingBox} className="ListingBox5" />
+          <p className="ListingText">COMING SOON...</p>
+        </div>
+
+        <div className="ListingBox6">
+          <img src= {ListingBox} className="ListingBox6" />
+          <p className="ListingText">COMING SOON...</p>
+        </div>
+
+
+
         {/* Schild-Bild */}
         <div className="signImageContainer">
           <img src={SignImage} alt="SIGN" className="signImage" />
@@ -73,8 +111,18 @@ function App() {
         <div className="bodenImageContainer">
           <img src={BodenImage} alt="Boden" className="bodenImage" />
         </div>
+
         {/* Soziale Medien Icons */}
         <div className="socialsContainer">
+
+        <div className="buttonBackground">
+          <img src={buttonBackground} alt="bg" className="buttonBG" />
+        </div>
+
+        <div className="buttonBackground2">
+          <img src={buttonBackground} alt="bg" className="buttonBG2" />
+        </div>
+
           <a
             href="https://t.me/your_telegram_group_invite_link"
             target="_blank"
@@ -89,6 +137,9 @@ function App() {
           >
             <img src={XIcon} alt="X" className="socialIcon" />
           </a>
+
+
+
         </div>
         {/* Textfeld */}
         <p className="textField">
