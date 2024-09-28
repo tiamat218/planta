@@ -403,7 +403,7 @@ html, body {
     position: fixed;
     top: 0;
     left: -100%;
-    width: 80vw; /* Halbierte Breite der Navbar */
+    width: 110vw; /* Halbierte Breite der Navbar */
     height: 110vh; /* Halbierte Höhe */
     background-image: url('./assets/bilder/baum.png'); /* Baum als Hintergrund */
     background-size: contain; /* Verhindert, dass der Baum abgeschnitten wird */
@@ -412,7 +412,7 @@ html, body {
     flex-direction: column;
     align-items: center; /* Zentriert die Elemente */
     padding-top: 2.5vh; /* Verringerter Padding-Abstand */
-    transform: translateX(-8rem); /* Entsprechend angepasst */
+    transform: translateX(-12rem); /* Entsprechend angepasst */
     transition: left 0.3s ease;
     gap: 2.5vh; /* Verringerter Abstand zwischen den Buttons */
     z-index: 5;
@@ -453,7 +453,7 @@ html, body {
     display: flex;
     justify-content: center;
     margin-bottom: 1vh;
-    margin-left: 10vw; /* Fügt Abstand nach links hinzu */
+    margin-left: 22vw; /* Fügt Abstand nach links hinzu */
   }
   
 
