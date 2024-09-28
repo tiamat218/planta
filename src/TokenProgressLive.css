@@ -3,20 +3,20 @@
 /* Overlay Container: Position und Größe des gesamten Overlays */
 .progressOverlay {
   position: fixed; /* Fixiert das Overlay relativ zum Viewport */
-  top: 680px; /* Setze diesen Wert höher, um das Overlay weiter oben zu positionieren */
-  left: 46%; /* Zentriert horizontal */
-  transform: translate(-50%, 0) scale(2.5); /* Entferne die vertikale Verschiebung */
+  top: 42.5vh; /* Angepasst für bessere Responsivität */
+  left: 50%;
+  transform: translate(-50%, 0) scale(2.5);
   width: auto;
   height: auto;
   pointer-events: none; /* Verhindert Interaktionen mit dem Overlay */
   z-index: 9999; /* Sicherstellen, dass das Overlay im Vordergrund liegt */
-  /* Entferne die Skalierung */
+  /* Skalierung beibehalten */
 }
 
 /* Hintergrundbild: ProgressBar.png fungiert als Rahmen für die Progressbar */
 .background-image {
   display: block;
-  width: 500px; /* Passe die Größe des Bildes an */
+  width: 31.25rem; /* 500px -> 31.25rem */
   height: auto; /* Erhaltung des Seitenverhältnisses */
   opacity: 1; /* Volle Sichtbarkeit */
   z-index: 2; /* Bild über dem restlichen Inhalt */
@@ -38,9 +38,10 @@
 /* Progress Bar Container: Größe und Stil der Progressbar */
 .progress-bar-container {
   width: 100%; /* Progressbar nimmt die gesamte Breite des Containers ein */
-  height: 32px; /* Anpassbare Höhe der Progressbar */
+  height: 2rem; /* 32px -> 2rem */
   background-color: rgba(129, 160, 125, 0.26); /* Leichte grüne Hintergrundfarbe */
   margin: 0; /* Kein Abstand zur Umrandung */
+  border-radius: 1rem; /* Optional: Abgerundete Ecken */
 }
 
 /* Progress Bar Fill: Gefüllter Teil der Progressbar */
@@ -48,30 +49,71 @@
   height: 100%;
   background-color: #2e9b8c; /* Farbe der gefüllten Progressbar */
   transition: width 0.5s ease-in-out;
+  border-radius: 1rem; /* Gleiche abgerundeten Ecken wie der Container */
 }
 
+/* Balance und Fehlertexte */
 .balance-text,
 .error-text {
   font-size: 1.5rem; /* Flexible Schriftgröße */
   color: #fff; /* Innenfarbe des Textes */
-  margin-top: 10px;
+  margin-top: 0.625rem; /* 10px -> 0.625rem */
   font-style: normal; /* Entfernt Kursiv */
   text-align: center;
   
   /* Erweiterte Text-Umrandung ohne Pixel-Gaps */
   text-shadow:
-    -1px -1px 0 #000,
-     1px -1px 0 #000,
-    -1px  1px 0 #000,
-     1px  1px 0 #000,
-     0px -1px 0 #000,
-     0px  1px 0 #000,
-    -1px  0px 0 #000,
-     1px  0px 0 #000;
+    -0.0625rem -0.0625rem 0 #000,
+     0.0625rem -0.0625rem 0 #000,
+    -0.0625rem  0.0625rem 0 #000,
+     0.0625rem  0.0625rem 0 #000,
+     0rem    -0.0625rem 0 #000,
+     0rem     0.0625rem 0 #000,
+    -0.0625rem 0rem      0 #000,
+     0.0625rem 0rem      0 #000;
 }
 
 /* Zusätzliche Stile für Fehlermeldungen */
 .error-text {
   color: red; /* Farbe des Fehlermeldungstextes */
   font-weight: bold;
+}
+
+/* Media Queries für TokenProgressLive */
+
+@media (max-width: 1024px) {
+  .progressOverlay {
+    top: 35vh;
+    transform: translate(-50%, 0) scale(2);
+  }
+
+  .background-image {
+    width: 25rem; /* 400px -> 25rem */
+  }
+
+  .progress-content {
+    height: 60%;
+    width: 85%;
+  }
+}
+
+@media (max-width: 768px) {
+  .progressOverlay {
+    top: 30vh;
+    transform: translate(-50%, 0) scale(1.8);
+  }
+
+  .background-image {
+    width: 20rem; /* 320px -> 20rem */
+  }
+
+  .progress-content {
+    height: 55%;
+    width: 80%;
+  }
+
+  .balance-text,
+  .error-text {
+    font-size: 1.2rem;
+  }
 }

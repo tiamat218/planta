@@ -1,5 +1,5 @@
 // src/App.js
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import './global.css';
 import './App.css'; // Spezifische Styles
 
@@ -19,8 +19,6 @@ import navBarBG from './assets/bilder/navBarBG.png';
 // Importiere das Hintergrundbild für die sozialen Medien
 import buttonBackground from './assets/bilder/kleinebox.png';
 
-import ListingBox from './assets/bilder/kleineboxGROSS.png';
-
 // Importiere die TokenProgressLive-Komponente
 import TokenProgressLive from './TokenProgressLive';
 
@@ -33,6 +31,8 @@ function App() {
   const tokenomicsRef = useRef(null); // Neue Referenz für Tokenomics
   const animationWrapperRef = useRef(null);
 
+  const [isNavOpen, setIsNavOpen] = useState(false); // Zustand für die Navbar
+
   useEffect(() => {
     if (animationWrapperRef.current) {
       animationWrapperRef.current.classList.add('slide-in');
@@ -43,6 +43,7 @@ function App() {
   const scrollToTop = () => {
     if (topRef.current) {
       topRef.current.scrollIntoView({ behavior: 'smooth' });
+      setIsNavOpen(false); // Schließe das Menü nach dem Scrollen
     }
   };
 
@@ -50,6 +51,7 @@ function App() {
   const scrollToRoadmap = () => {
     if (roadmapRef.current) {
       roadmapRef.current.scrollIntoView({ behavior: 'smooth' });
+      setIsNavOpen(false); // Schließe das Menü nach dem Scrollen
     }
   };
 
@@ -57,11 +59,148 @@ function App() {
   const scrollToTokenomics = () => {
     if (tokenomicsRef.current) {
       tokenomicsRef.current.scrollIntoView({ behavior: 'smooth' });
+      setIsNavOpen(false); // Schließe das Menü nach dem Scrollen
     }
+  };
+
+  // Funktion zum Toggle der Navbar
+  const toggleNavbar = () => {
+    setIsNavOpen(!isNavOpen);
   };
 
   return (
     <div className="appContainer" ref={topRef}>
+      {/* Navbar */}
+      <div className={`navbar ${isNavOpen ? 'open' : ''}`}>
+        {/* Hamburger Menü Button (nur sichtbar auf mobilen Geräten) */}
+        <div
+          className="hamburgerButton"
+          onClick={toggleNavbar}
+          aria-label="Navigation umschalten"
+          aria-expanded={isNavOpen}
+          role="button"
+          tabIndex={0}
+          onKeyPress={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              toggleNavbar();
+            }
+          }}
+        >
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+
+        {/* Vertikale Navbar Buttons */}
+        <div className="buttonContainer">
+          {/* Logo */}
+          <div
+            className="logoContainer"
+            onClick={scrollToTop}
+            role="button"
+            tabIndex={0}
+            onKeyPress={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                scrollToTop();
+              }
+            }}
+          >
+            <img src={LogoImage} alt="Logo" className="logo" />
+          </div>
+
+          {/* Navigationsbuttons */}
+          <div
+            className="navButton"
+            style={{ backgroundImage: `url(${navBarBG})` }}
+            onClick={scrollToRoadmap}
+            role="button"
+            tabIndex={0}
+            onKeyPress={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                scrollToRoadmap();
+              }
+            }}
+          >
+            ROADMAP
+          </div>
+          <div
+            className="navButton"
+            style={{ backgroundImage: `url(${navBarBG})` }}
+            onClick={scrollToTokenomics}
+            role="button"
+            tabIndex={0}
+            onKeyPress={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                scrollToTokenomics();
+              }
+            }}
+          >
+            TOKENOMICS
+          </div>
+          <div
+            className="navButton"
+            style={{ backgroundImage: `url(${navBarBG})` }}
+            role="button"
+            tabIndex={0}
+            onClick={() => setIsNavOpen(false)} // Optional: Schließe das Menü
+            onKeyPress={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                setIsNavOpen(false);
+              }
+            }}
+          >
+            UTILITY
+          </div>
+          <div
+            className="navButton"
+            style={{ backgroundImage: `url(${navBarBG})` }}
+            role="button"
+            tabIndex={0}
+            onClick={() => setIsNavOpen(false)} // Optional: Schließe das Menü
+            onKeyPress={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                setIsNavOpen(false);
+              }
+            }}
+          >
+            FEATURES
+          </div>
+          <div
+            className="navButton"
+            style={{ backgroundImage: `url(${navBarBG})` }}
+            role="button"
+            tabIndex={0}
+            onClick={() => setIsNavOpen(false)} // Optional: Schließe das Menü
+            onKeyPress={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                setIsNavOpen(false);
+              }
+            }}
+          >
+            WIKI
+          </div>
+          <div
+            className="navButton"
+            style={{ backgroundImage: `url(${navBarBG})` }}
+            role="button"
+            tabIndex={0}
+            onClick={() => setIsNavOpen(false)} // Optional: Schließe das Menü
+            onKeyPress={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                setIsNavOpen(false);
+              }
+            }}
+          >
+            FAQ
+          </div>
+        </div>
+      </div>
+
+      {/* Side Image (Baum als Hintergrund für die Navbar) - nur Desktop */}
+      <div className="sideImageContainer">
+        <img src={BaumImage} alt="Side" className="sideImage" />
+      </div>
+
       {/* Animation Wrapper */}
       <div
         ref={animationWrapperRef}
@@ -71,33 +210,15 @@ function App() {
         {/* TokenProgressLive-Komponente */}
         <TokenProgressLive />
 
-        {/* Grid für ListingBoxes (als Overlay) */}
+        {/*
         <div className="listingOverlay">
           <div className="ListingBox">
             <img src={ListingBox} className="ListingBoxImage" alt="Listing" />
             <p className="ListingText">COMING SOON...</p>
           </div>
-          <div className="ListingBox">
-            <img src={ListingBox} className="ListingBoxImage" alt="Listing" />
-            <p className="ListingText">COMING SOON...</p>
-          </div>
-          <div className="ListingBox">
-            <img src={ListingBox} className="ListingBoxImage" alt="Listing" />
-            <p className="ListingText">COMING SOON...</p>
-          </div>
-          <div className="ListingBox">
-            <img src={ListingBox} className="ListingBoxImage" alt="Listing" />
-            <p className="ListingText">COMING SOON...</p>
-          </div>
-          <div className="ListingBox">
-            <img src={ListingBox} className="ListingBoxImage" alt="Listing" />
-            <p className="ListingText">COMING SOON...</p>
-          </div>
-          <div className="ListingBox">
-            <img src={ListingBox} className="ListingBoxImage" alt="Listing" />
-            <p className="ListingText">COMING SOON...</p>
-          </div>
+          ...
         </div>
+        */}
 
         {/* Schild-Bild */}
         <div className="signImageContainer">
@@ -117,9 +238,10 @@ function App() {
             target="_blank"
             rel="noopener noreferrer"
             className="socialLink"
+            aria-label="Twitter"
           >
             <div className="iconWrapper">
-              <img src={buttonBackground} alt="bg" className="buttonBG" />
+              <img src={buttonBackground} alt="Hintergrund" className="buttonBG" />
               <img src={XIcon} alt="X" className="socialIcon" />
             </div>
           </a>
@@ -130,9 +252,10 @@ function App() {
             target="_blank"
             rel="noopener noreferrer"
             className="socialLink"
+            aria-label="Telegram"
           >
             <div className="iconWrapper">
-              <img src={buttonBackground} alt="bg" className="buttonBG2" />
+              <img src={buttonBackground} alt="Hintergrund" className="buttonBG2" />
               <img src={TeleIcon} alt="Telegram" className="socialIcon" />
             </div>
           </a>
@@ -149,50 +272,12 @@ function App() {
       {/* Presale Button Komponente außerhalb des Animation Wrappers */}
       <PresaleButton />
 
-      {/* Navigations-Buttons */}
-      <div className="buttonContainer">
-        <div
-          className="navButton"
-          style={{ backgroundImage: `url(${navBarBG})` }}
-          onClick={scrollToRoadmap}
-        >
-          ROADMAP
-        </div>
-        <div
-          className="navButton"
-          style={{ backgroundImage: `url(${navBarBG})` }}
-          onClick={scrollToTokenomics}
-        >
-          TOKENOMICS
-        </div>
-        <div className="navButton" style={{ backgroundImage: `url(${navBarBG})` }}>
-          UTILITY
-        </div>
-        <div className="navButton" style={{ backgroundImage: `url(${navBarBG})` }}>
-          FEATURES
-        </div>
-        <div className="navButton" style={{ backgroundImage: `url(${navBarBG})` }}>
-          WIKI
-        </div>
-        <div className="navButton" style={{ backgroundImage: `url(${navBarBG})` }}>
-          FAQ
-        </div>
-      </div>
-
-      {/* Logo */}
-      <div className="logoContainer" onClick={scrollToTop}>
-        <img src={LogoImage} alt="Logo" className="logo" />
-      </div>
-
       {/* Charakterbild */}
       <div className="charImageContainer">
         <img src={CharImage} alt="Char" className="charImage" />
       </div>
 
-      {/* Seitenbilder */}
-      <div className="sideImageContainer">
-        <img src={BaumImage} alt="Side" className="sideImage" />
-      </div>
+      {/* Mirrored Side Image */}
       <div className="mirroredImageContainer">
         <img src={BaumImage} alt="Mirrored Side" className="mirroredSideImage" />
       </div>
