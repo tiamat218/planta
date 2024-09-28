@@ -1,15 +1,17 @@
 // src/PresaleButton.js
 import React, { useState, useEffect } from 'react';
 import { Connection, PublicKey, clusterApiUrl, Transaction, SystemProgram } from '@solana/web3.js';
-import './PresaleButton.css'; // Optional: Separate CSS-Datei für die Komponente
+import './PresaleButton.css'; // Separate CSS-Datei für die Komponente
+import JoinButtonImage from './assets/bilder/JoinButton.png'; // Importiere das JoinButton-Bild
 
 const PresaleButton = () => {
   const [walletAddress, setWalletAddress] = useState(null);
   const [isSending, setIsSending] = useState(false);
   const [transactionStatus, setTransactionStatus] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [solAmount, setSolAmount] = useState('');
 
   // Definiere die Ziel-Wallet-Adresse für den Presale
-  // Ersetze 'DEINE_GÜLTIGE_PRESALE_WALLET_ADRESSE_HIER' mit deiner tatsächlichen Wallet-Adresse
   const presaleWalletAddress = new PublicKey('827mva9RPd9wraF6gBGqTf6w1sqW5Kbi7kvaHr2zGu5N');
 
   useEffect(() => {
@@ -56,6 +58,13 @@ const PresaleButton = () => {
       return;
     }
 
+    // Validierung des eingegebenen Betrags
+    const lamports = parseFloat(solAmount) * 1e9; // 1 SOL = 1,000,000,000 Lamports
+    if (isNaN(lamports) || lamports <= 0) {
+      alert('Bitte gib einen gültigen Betrag in SOL ein.');
+      return;
+    }
+
     setIsSending(true);
     setTransactionStatus(null);
 
@@ -64,23 +73,22 @@ const PresaleButton = () => {
       const senderPublicKey = new PublicKey(walletAddress);
       const receiverPublicKey = presaleWalletAddress;
 
-      // Definiere den Betrag in Lamports (1 SOL = 1,000,000,000 Lamports)
-      const amount = 1 * 1e9; // Beispiel: 1 SOL
-
       const transaction = new Transaction().add(
         SystemProgram.transfer({
           fromPubkey: senderPublicKey,
           toPubkey: receiverPublicKey,
-          lamports: amount,
+          lamports: lamports,
         })
       );
 
       const { solana } = window;
 
       if (solana) {
-        const signature = await solana.signAndSendTransaction(transaction);
-        console.log('Transaktion gesendet mit Signatur:', signature.signature);
-        setTransactionStatus(`Transaktion erfolgreich! Signature: ${signature.signature}`);
+        const { signature } = await solana.signAndSendTransaction(transaction);
+        console.log('Transaktion gesendet mit Signatur:', signature);
+        setTransactionStatus(`Transaktion erfolgreich! Signature: ${signature}`);
+        setIsModalOpen(false); // Schließe das Modal nach erfolgreicher Transaktion
+        setSolAmount(''); // Reset des Betrags
       }
     } catch (error) {
       console.error('Fehler beim Senden der Transaktion:', error);
@@ -93,15 +101,43 @@ const PresaleButton = () => {
   return (
     <div className="presaleButtonContainer">
       {!walletAddress ? (
-        <button className="connectWalletButton" onClick={connectWallet}>
-          Wallet verbinden
+        <button className="joinButton" onClick={connectWallet}>
+          <img src={JoinButtonImage} alt="Join Button" className="joinButtonImage" />
+          <span className="joinButtonText">JOIN</span>
         </button>
       ) : (
-        <button className="sendSOLButton" onClick={sendSOL} disabled={isSending}>
-          {isSending ? 'Senden...' : 'SOL an Presale senden'}
+        <button className="joinButton" onClick={() => setIsModalOpen(true)} disabled={isSending}>
+          <img src={JoinButtonImage} alt="Join Button" className="joinButtonImage" />
+          <span className="joinButtonText">JOIN</span>
         </button>
       )}
       {transactionStatus && <p className="transactionStatus">{transactionStatus}</p>}
+
+      {/* Modal */}
+      {isModalOpen && (
+        <div className="modalOverlay">
+          <div className="modalContent">
+            <h2>Presale SOL senden</h2>
+            <input
+              type="number"
+              placeholder="Betrag in SOL"
+              value={solAmount}
+              onChange={(e) => setSolAmount(e.target.value)}
+              className="solInput"
+              min="0"
+              step="0.0001"
+            />
+            <div className="modalButtons">
+              <button className="confirmButton" onClick={sendSOL} disabled={isSending}>
+                {isSending ? 'Senden...' : 'Bestätigen'}
+              </button>
+              <button className="cancelButton" onClick={() => setIsModalOpen(false)} disabled={isSending}>
+                Abbrechen
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

@@ -14,9 +14,12 @@ import CharImage from './assets/bilder/CharSolo.png';
 import BaumImage from './assets/bilder/baum.png';
 import BarImage from './assets/bilder/bar.png';
 import RoadImage from './assets/bilder/Road4.png';
-import buttonBackground from './assets/bilder/kleinebox.png'
+import navBarBG from './assets/bilder/navBarBG.png';
 
-import ListingBox from './assets/bilder/kleineboxGROSS.png'
+// Importiere das Hintergrundbild für die sozialen Medien
+import buttonBackground from './assets/bilder/kleinebox.png';
+
+import ListingBox from './assets/bilder/kleineboxGROSS.png';
 
 // Importiere die TokenProgressLive-Komponente
 import TokenProgressLive from './TokenProgressLive';
@@ -57,90 +60,84 @@ function App() {
     }
   };
 
-
-  
-
   return (
     <div className="appContainer" ref={topRef}>
       {/* Animation Wrapper */}
       <div
         ref={animationWrapperRef}
         className="animationWrapper slide-in"
-        style={{ position: 'relative', minHeight: '100vh' }} // Setze min-height: 100vh
+        style={{ position: 'relative', minHeight: '100vh' }}
       >
         {/* TokenProgressLive-Komponente */}
         <TokenProgressLive />
 
-        <div className="ListingBox">
-          <img src= {ListingBox} className="ListingBox" />
-          <p className="ListingText">COMING SOON...</p>
+        {/* Grid für ListingBoxes (als Overlay) */}
+        <div className="listingOverlay">
+          <div className="ListingBox">
+            <img src={ListingBox} className="ListingBoxImage" alt="Listing" />
+            <p className="ListingText">COMING SOON...</p>
+          </div>
+          <div className="ListingBox">
+            <img src={ListingBox} className="ListingBoxImage" alt="Listing" />
+            <p className="ListingText">COMING SOON...</p>
+          </div>
+          <div className="ListingBox">
+            <img src={ListingBox} className="ListingBoxImage" alt="Listing" />
+            <p className="ListingText">COMING SOON...</p>
+          </div>
+          <div className="ListingBox">
+            <img src={ListingBox} className="ListingBoxImage" alt="Listing" />
+            <p className="ListingText">COMING SOON...</p>
+          </div>
+          <div className="ListingBox">
+            <img src={ListingBox} className="ListingBoxImage" alt="Listing" />
+            <p className="ListingText">COMING SOON...</p>
+          </div>
+          <div className="ListingBox">
+            <img src={ListingBox} className="ListingBoxImage" alt="Listing" />
+            <p className="ListingText">COMING SOON...</p>
+          </div>
         </div>
-
-        <div className="ListingBox2">
-          <img src= {ListingBox} className="ListingBox2" />
-          <p className="ListingText">COMING SOON...</p>
-        </div>
-
-        <div className="ListingBox3">
-          <img src= {ListingBox} className="ListingBox3" />
-          <p className="ListingText">COMING SOON...</p>
-        </div>
-
-        <div className="ListingBox4">
-          <img src= {ListingBox} className="ListingBox4" />
-          <p className="ListingText">COMING SOON...</p>
-        </div>
-
-        <div className="ListingBox5">
-          <img src= {ListingBox} className="ListingBox5" />
-          <p className="ListingText">COMING SOON...</p>
-        </div>
-
-        <div className="ListingBox6">
-          <img src= {ListingBox} className="ListingBox6" />
-          <p className="ListingText">COMING SOON...</p>
-        </div>
-
-
 
         {/* Schild-Bild */}
         <div className="signImageContainer">
           <img src={SignImage} alt="SIGN" className="signImage" />
         </div>
+
         {/* Boden-Bild */}
         <div className="bodenImageContainer">
           <img src={BodenImage} alt="Boden" className="bodenImage" />
         </div>
 
-        {/* Soziale Medien Icons */}
+        {/* Soziale Medien Icons mit Hintergrund */}
         <div className="socialsContainer">
-
-        <div className="buttonBackground">
-          <img src={buttonBackground} alt="bg" className="buttonBG" />
-        </div>
-
-        <div className="buttonBackground2">
-          <img src={buttonBackground} alt="bg" className="buttonBG2" />
-        </div>
-
-          <a
-            href="https://t.me/your_telegram_group_invite_link"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img src={TeleIcon} alt="Telegram" className="socialIcon" />
-          </a>
+          {/* X Logo mit Hintergrund */}
           <a
             href="https://twitter.com/your_twitter_handle"
             target="_blank"
             rel="noopener noreferrer"
+            className="socialLink"
           >
-            <img src={XIcon} alt="X" className="socialIcon" />
+            <div className="iconWrapper">
+              <img src={buttonBackground} alt="bg" className="buttonBG" />
+              <img src={XIcon} alt="X" className="socialIcon" />
+            </div>
           </a>
 
-
-
+          {/* Telegram Logo mit Hintergrund */}
+          <a
+            href="https://t.me/your_telegram_group_invite_link"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="socialLink"
+          >
+            <div className="iconWrapper">
+              <img src={buttonBackground} alt="bg" className="buttonBG2" />
+              <img src={TeleIcon} alt="Telegram" className="socialIcon" />
+            </div>
+          </a>
         </div>
+
         {/* Textfeld */}
         <p className="textField">
           CHARITY,
@@ -149,24 +146,37 @@ function App() {
         </p>
       </div>
 
+      {/* Presale Button Komponente außerhalb des Animation Wrappers */}
+      <PresaleButton />
+
       {/* Navigations-Buttons */}
       <div className="buttonContainer">
-        <img
-          src="./assets/bilder/roadmap.png" // Stelle sicher, dass der Pfad korrekt ist
-          alt="ROADMAP"
-          className="button"
+        <div
+          className="navButton"
+          style={{ backgroundImage: `url(${navBarBG})` }}
           onClick={scrollToRoadmap}
-        />
-        <img
-          src="./assets/bilder/tokenomics.png"
-          alt="TOKENOMICS"
-          className="button"
-          onClick={scrollToTokenomics} // Füge onClick hinzu
-        />
-        <img src="./assets/bilder/utility.png" alt="UTILITY" className="button" />
-        <img src="./assets/bilder/features.png" alt="FEATURES" className="button" />
-        <img src="./assets/bilder/wiki.png" alt="WIKI" className="button" />
-        <img src="./assets/bilder/faq.png" alt="FAQ" className="button" />
+        >
+          ROADMAP
+        </div>
+        <div
+          className="navButton"
+          style={{ backgroundImage: `url(${navBarBG})` }}
+          onClick={scrollToTokenomics}
+        >
+          TOKENOMICS
+        </div>
+        <div className="navButton" style={{ backgroundImage: `url(${navBarBG})` }}>
+          UTILITY
+        </div>
+        <div className="navButton" style={{ backgroundImage: `url(${navBarBG})` }}>
+          FEATURES
+        </div>
+        <div className="navButton" style={{ backgroundImage: `url(${navBarBG})` }}>
+          WIKI
+        </div>
+        <div className="navButton" style={{ backgroundImage: `url(${navBarBG})` }}>
+          FAQ
+        </div>
       </div>
 
       {/* Logo */}
@@ -184,11 +194,7 @@ function App() {
         <img src={BaumImage} alt="Side" className="sideImage" />
       </div>
       <div className="mirroredImageContainer">
-        <img
-          src={BaumImage}
-          alt="Mirrored Side"
-          className="mirroredSideImage"
-        />
+        <img src={BaumImage} alt="Mirrored Side" className="mirroredSideImage" />
       </div>
 
       {/* Bar-Bild */}
@@ -197,23 +203,16 @@ function App() {
       </div>
 
       {/* Roadmap Section */}
-      <div ref={roadmapRef} className="roadmapSection"> {/* Referenz für Roadmap */}
-        {/* Overlay Container */}
+      <div ref={roadmapRef} className="roadmapSection">
         <div className="overlayContainer">
           <img src={RoadImage} alt="Road4" className="overlayImage" />
         </div>
-        {/* Zusätzlicher Inhalt */}
         <div className="whiteContainer"></div>
         <p style={{ marginTop: '0vh' }}>.</p>
       </div>
 
       {/* Tokenomics Section */}
-      <div ref={tokenomicsRef} className="tokenomicsSection">
-
-      </div>
-
-      {/* Presale Button Komponente */}
-      <PresaleButton />
+      <div ref={tokenomicsRef} className="tokenomicsSection"></div>
     </div>
   );
 }

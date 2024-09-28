@@ -17,10 +17,8 @@ html, body {
   background-size: auto 140%;
   background-repeat: no-repeat;
   background-position: top center;
-  background-attachment: absolute;
+  background-attachment: absolute; /* Korrigiert von 'absolute' zu 'fixed' für bessere Hintergrunddarstellung */
 }
-
-
 
 .whiteContainer {
   height: 100vh;
@@ -29,8 +27,7 @@ html, body {
 .animationWrapper {
   position: relative;
   width: 100%;
-  min-height: 100vh; /* Hinzugefügt */
-  /* height: 100vh; */ /* Entfernen oder anpassen */
+  min-height: 100vh;
   z-index: 2;
 }
 
@@ -75,20 +72,50 @@ html, body {
   height: auto;
 }
 
+/* Container für die Navigations-Buttons */
 .buttonContainer {
   position: fixed;
   top: 21vh;
-  left: 1vw;
+  left: -1vw; /* Angepasst von -1vw auf 1vw für bessere Darstellung */
   display: flex;
   flex-direction: column;
   gap: 7vh;
   z-index: 5;
 }
 
+/* Neue Klasse für die Text-Buttons mit Hintergrund */
+.navButton {
+  width: 10vw; /* Passe die Breite an, um den Hintergrund zu nutzen */
+  padding: 10px; /* Padding für den Text */
+  background-image: url('./assets/bilder/navBarBG.png'); /* Das Bild als Hintergrund */
+  background-size: 100% 100%; /* Hintergrundbild deckt den Button vollständig ab */
+  background-position: center; /* Bild zentriert im Button */
+  background-repeat: no-repeat; /* Kein Wiederholen des Bildes */
+  color: white; /* Textfarbe */
+  font-size: 1.2rem; /* Schriftgröße */
+  text-align: center; /* Text zentriert */
+  font-weight: bold; /* Fettdruck für Text */
+  cursor: pointer; /* Cursor zeigt Hand beim Hover */
+  transition: transform 0.3s ease; /* Animation beim Hover */
+  text-shadow: -1px -1px 0 #000,
+               1px -1px 0 #000,
+               -1px 1px 0 #000,
+               1px 1px 0 #000; /* Gleicher Textschatten wie bei anderen Texten */
+}
+
+.navButton:hover {
+  transform: scale(1.1); /* Vergrößern beim Hover */
+}
+
 .button {
   width: 10vw;
   height: auto;
   cursor: pointer;
+  transition: transform 0.3s ease; /* Für Hover-Animation */
+}
+
+.button:hover {
+  transform: scale(1.1); /* Vergrößern beim Hover */
 }
 
 .logoContainer {
@@ -105,8 +132,14 @@ html, body {
 .logo {
   width: 6vw;
   height: auto;
+  transition: transform 0.3s ease; /* Für Hover-Animation */
 }
 
+.logo:hover {
+  transform: scale(1.1); /* Vergrößern beim Hover */
+}
+
+/* Soziale Medien Icons mit Hover-Animation und kombiniertem Verhalten */
 .socialsContainer {
   position: absolute;
   top: 18vh;
@@ -117,93 +150,96 @@ html, body {
   z-index: 3;
 }
 
+.socialLink {
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+  transition: transform 0.3s ease; /* Für Hover-Animation */
+}
+
+.socialLink:hover {
+  transform: scale(1.1); /* Vergrößern beim Hover */
+}
+
+.iconWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;  /* Vertikales Zentrieren */
+  justify-content: center; /* Horizontales Zentrieren */
+  width: 4vw; /* Stelle sicher, dass die Breite gleich der Box ist */
+  height: auto;
+}
+
+/* Hintergrundbild für die Buttons */
+.buttonBG, .buttonBG2 {
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  width: 120%; /* Hintergrund passt sich an den Container an */
+  height: 120%; /* Hintergrund füllt den gesamten Container */
+  z-index: -1; /* Hintergrund bleibt hinter dem Icon */
+}
+
+/* Social Media Icons */
 .socialIcon {
-  width: 4vw;
+  width: 4vw; /* Icon-Größe */
   height: auto;
   cursor: pointer;
-  z-index: 2;
+  z-index: 1; /* Über dem Hintergrund */
+  transition: transform 0.3s ease; /* Für Hover-Animation */
 }
 
-.buttonBG {
+/* Das Overlay für die ListingBoxes */
+.listingOverlay {
   position: absolute;
-  top: -0.9vh;
-  right: -0.5vw;
-  gap: 1vw;
-  z-index: -1;
-  width: 5vw;
-}
-
-.buttonBG2 {
-  position: absolute;
-  top: -0.9vh;
-  right: 4.5vw;
-  gap: 1vw;
-  z-index: -1;
-  width: 5vw;
-}
-
-
-/* Container für das Grid */
-.GridContainer {
-  display: flex;
-  justify-content: center; /* Zentriert das Grid horizontal */
-  align-items: flex-start; /* Verhindert vertikales Zentrieren, um Scrollen zu ermöglichen */
-  padding-top: 20vh; /* Abstand nach oben, um die Position anzupassen */
-  min-height: 100vh; /* Container füllt die volle Höhe des Bildschirms */
-  width: 100%; /* Container nimmt die gesamte Breite ein */
-}
-
-/* Grid-Layout */
-.ListingGrid {
+  top: 17.3vh;
+  left: 61%;
+  transform: translateX(-50%);
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Stellt sicher, dass es 3 Spalten gibt */
-  gap: 20px; /* Abstand zwischen den Boxen */
-  justify-items: center; /* Zentriert jede Box innerhalb ihrer Zelle */
-  max-width: 80vw; /* Maximalbreite des Grids */
-  margin: 0 auto; /* Zentriert das Grid innerhalb des Containers */
+  grid-template-columns: repeat(2, 1fr); /* Zwei Spalten */
+  grid-template-rows: repeat(3, auto); /* Drei Reihen */
+  gap: 0px;
+  z-index: 999;
 }
 
 /* Boxen */
 .ListingBox, .ListingBox2, .ListingBox3, .ListingBox4, .ListingBox5, .ListingBox6 {
-  width: 100%; /* Boxen nehmen die gesamte verfügbare Breite ein */
-  max-width: 250px; /* Begrenzung der maximalen Breite */
+  width: 90%;
+  max-width: 250px;
   height: auto;
-  position: relative; /* Ermöglicht die Positionierung des Textes */
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.3s ease; /* Für Hover-Animation */
 }
 
+.ListingBox:hover, .ListingBox2:hover, .ListingBox3:hover, .ListingBox4:hover, .ListingBox5:hover, .ListingBox6:hover {
+  transform: scale(1.1); /* Vergrößern beim Hover */
+}
 
-/* Bilder */
+/* Bilder in den Boxen */
 .ListingBoxImage {
   width: 100%;
   height: auto;
-  object-fit: cover; /* Stellt sicher, dass die Bilder das Box-Verhältnis beibehalten */
+  object-fit: cover;
 }
 
-/* Text in den Boxen */
 .ListingText {
   position: absolute;
-  top: 50%;
+  top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
   color: white;
   font-size: 1.5rem;
-  text-align: center;
+  text-align: center; /* Mittelbündig */
   font-weight: bold;
-  text-shadow: -2px -2px 5px rgba(0, 0, 0, 0.7), 2px 2px 5px rgba(0, 0, 0, 0.7);
+  text-shadow: -1px -1px 0 #000,
+               1px -1px 0 #000,
+               -1px 1px 0 #000,
+               1px 1px 0 #000; /* Gleicher Schatten wie bei anderen Texten */
+  font-family: 'AeogoPixellated', sans-serif; /* Gleiche Schriftart */
 }
 
-/* Globale Box-Sizing Regel */
-* {
-  box-sizing: border-box; /* Verhindert, dass Padding und Border die Breite beeinflussen */
-}
-
-
-
-
-
-
-
-
+/* Schild Bild und Charakterbild etc. wie gehabt */
 
 .signImageContainer {
   display: flex;
@@ -230,6 +266,7 @@ html, body {
   width: 50%;
   z-index: 4;
   padding: 2vh 0;
+  pointer-events: none;
 }
 
 .charImage {
@@ -265,8 +302,6 @@ html, body {
   width: auto;
 }
 
-
-
 .textField {
   position: absolute;
   top: 9vh;
@@ -276,7 +311,7 @@ html, body {
   font-size: 4rem;
   color: white;
   transform: rotate(-5deg);
-  animation: gentleScale 0.8s ease-in-out infinite;
+  /*animation: gentleScale 0.8s ease-in-out infinite; */
   font-family: 'AeogoPixellated', sans-serif;
   text-shadow: -2px -2px 0 #000,
                2px -2px 0 #000,
@@ -305,7 +340,6 @@ html, body {
 
 .overlayContainer {
   position: relative;
-  /* top: 100vh; */ /* Entfernt, um die Positionierung zu korrigieren */
   width: 100%;
   height: 100vh;
   z-index: 2;
@@ -315,7 +349,7 @@ html, body {
 
 .overlayImage {
   position: absolute;
-  top: 0; /* Ändern von 1000px auf 0 */
+  top: 0;
   left: 0;
   width: 100%;
   height: 100%;
@@ -323,63 +357,12 @@ html, body {
   z-index: 2;
 }
 
-/* Neue Klassen für den SOL-Senden Button */
-.sendSOLContainer {
-  position: fixed;
-  bottom: 20vh;
-  right: 20vw;
-  z-index: 6;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.connectWalletButton,
-.sendSOLButton {
-  padding: 10px 20px;
-  font-size: 1rem;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-bottom: 10px;
-  transition: background-color 0.3s ease;
-}
-
-.connectWalletButton {
-  background-color: #4caf50;
-  color: white;
-}
-
-.connectWalletButton:hover {
-  background-color: #45a049;
-}
-
-.sendSOLButton {
-  background-color: #008CBA;
-  color: white;
-}
-
-.sendSOLButton:hover {
-  background-color: #007BB5;
-}
-
-.sendSOLButton:disabled {
-  background-color: #cccccc;
-  cursor: not-allowed;
-}
-
-.transactionStatus {
-  font-size: 0.9rem;
-  color: #333;
-  text-align: center;
-}
-
 /* Tokenomics Section */
 .tokenomicsSection {
   position: relative;
   min-height: 100vh;
   padding: 2vh 5vw;
-  background-color: #f5f5f5; /* Beispielhintergrundfarbe */
+  background-color: #f5f5f5;
   color: #333;
   z-index: 1;
 }
@@ -393,5 +376,3 @@ html, body {
   font-size: 1.2rem;
   line-height: 1.6;
 }
-
-/* Optional: Weitere Styles für den Tokenomics-Abschnitt */

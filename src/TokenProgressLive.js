@@ -33,7 +33,7 @@ const TokenProgressLive = () => {
   const [error, setError] = useState(null);
 
   const walletAddress = '827mva9RPd9wraF6gBGqTf6w1sqW5Kbi7kvaHr2zGu5N';
-  const targetAmount = 1;
+  const targetAmount = 0.1;
   const rpcUrl = process.env.REACT_APP_SOLANA_RPC_URL;
   const connection = new Connection(rpcUrl, 'confirmed');
 
@@ -76,7 +76,7 @@ const TokenProgressLive = () => {
 
     subscribeToBalanceChanges();
 
-    const interval = setInterval(updateBalance, 30000); // Alle 30 Sekunden
+    const interval = setInterval(updateBalance, 1000000); // Alle 1000 Sekunden
 
     return () => {
       isMounted = false;

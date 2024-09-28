@@ -1,52 +1,145 @@
 /* src/PresaleButton.css */
 
 .presaleButtonContainer {
-    position: fixed;
-    bottom: 2vh;
-    right: 2vw;
-    z-index: 6;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .connectWalletButton,
-  .sendSOLButton {
-    padding: 10px 20px;
-    font-size: 1rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-bottom: 10px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .connectWalletButton {
-    background-color: #4caf50;
-    color: white;
-  }
-  
-  .connectWalletButton:hover {
-    background-color: #45a049;
-  }
-  
-  .sendSOLButton {
-    background-color: #008CBA;
-    color: white;
-  }
-  
-  .sendSOLButton:hover {
-    background-color: #007BB5;
-  }
-  
-  .sendSOLButton:disabled {
-    background-color: #cccccc;
-    cursor: not-allowed;
-  }
-  
-  .transactionStatus {
-    font-size: 0.9rem;
-    color: #333;
-    text-align: center;
-  }
-  
+  position: absolute; /* Positionierung absolut innerhalb des Elterncontainers */
+  top: 13%; /* Positionierung nach oben, anpassbar */
+  left: 18%;
+  transform: translateX(-50%);
+  z-index: 6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: scale(1.8);
+}
+
+.joinButton {
+  position: relative;
+  width: 200px; /* Passe die Breite nach Bedarf an */
+  height: 80px; /* Passe die Höhe nach Bedarf an */
+  border: none;
+  background: none;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+  margin: 0;
+  transition: transform 0.3s ease; /* Für Hover-Animation */
+}
+
+.joinButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.joinButton:hover {
+  transform: scale(1.1); /* Vergrößern beim Hover */
+}
+
+.joinButtonImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Verhindert das Abschneiden des Bildes */
+  display: block;
+  border-radius: 10px; /* Optional: Abgerundete Ecken */
+}
+
+.joinButtonText {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+  pointer-events: none; /* Verhindert, dass der Text Klicks empfängt */
+  text-shadow: -1px -1px 0 #000,
+               1px -1px 0 #000,
+               -1px 1px 0 #000,
+               1px 1px 0 #000; /* Textschatten für bessere Lesbarkeit */
+  font-family: 'AeogoPixellated', sans-serif; /* Gleiche Schriftart wie andere Texte */
+}
+
+/* Transaction Status */
+.transactionStatus {
+  margin-top: 10px;
+  font-size: 1rem;
+  color: #333;
+  text-align: center;
+}
+
+/* Modal Styles */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Halbtransparenter Hintergrund */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.modalContent {
+  background-color: #fff;
+  padding: 20px 30px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  text-align: center;
+}
+
+.modalContent h2 {
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.solInput {
+  width: 80%;
+  padding: 10px;
+  font-size: 1rem;
+  margin-bottom: 20px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+}
+
+.modalButtons {
+  display: flex;
+  justify-content: space-around;
+}
+
+.confirmButton,
+.cancelButton {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.confirmButton {
+  background-color: #4caf50;
+  color: white;
+}
+
+.confirmButton:hover {
+  background-color: #45a049;
+}
+
+.cancelButton {
+  background-color: #f44336;
+  color: white;
+}
+
+.cancelButton:hover {
+  background-color: #da190b;
+}
+
+.confirmButton:disabled,
+.cancelButton:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
