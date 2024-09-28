@@ -311,7 +311,7 @@ html, body {
   font-size: 4rem;
   color: white;
   transform: rotate(-5deg);
-  /*animation: gentleScale 0.8s ease-in-out infinite; */
+  animation: gentleScale 1.4s ease-in-out infinite; 
   font-family: 'AeogoPixellated', sans-serif;
   text-shadow: -2px -2px 0 #000,
                2px -2px 0 #000,
