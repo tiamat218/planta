@@ -3,78 +3,40 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-  scroll-behavior: smooth; /* Fügt sanftes Scrollen global hinzu */
+  scroll-behavior: smooth;
 }
 
-/* Spezifische Styles für App.js */
 .appContainer {
   min-height: 100%;
   position: relative;
   background-image: url('./assets/bilder/Himmel2.jpg');
-  background-size: auto 140%;
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: top center;
-  background-attachment: fixed; /* Korrigiert von 'absolute' zu 'fixed' für bessere Hintergrunddarstellung */
 }
 
-.whiteContainer {
-  height: 100vh;
-}
-
-.animationWrapper {
+.sectionsContainer {
   position: relative;
   width: 100%;
+}
+
+.section {
   min-height: 100vh;
-  z-index: 2;
+  scroll-margin-top: 60px; /* Passen Sie 60px an die Höhe Ihrer Navbar an */
 }
 
-.slide-in {
-  animation: slideIn 1000ms ease-out forwards;
-}
-
-@keyframes slideIn {
-  from {
-    transform: translateY(100vh);
-  }
-  to {
-    transform: translateY(0);
-  }
-}
-
-.bodenImageContainer {
-  position: absolute;
-  top: 45vh;
-  left: 15%;
-  width: 70%;
-  z-index: 2;
-  pointer-events: none;
-}
-
-.bodenImage {
+.sectorImage {
   width: 100%;
   height: auto;
+  display: block;
 }
 
-.barContainer {
-  position: absolute;
-  top: 90vh;
-  left: 5%;
-  width: 90vw;
-  z-index: 3;
-  pointer-events: none;
-}
-
-.barImage {
-  width: 100%;
-  height: auto;
-}
-
-/* Container für die Navigations-Buttons */
-.buttonContainer {
+/* Navbar Styles */
+.navbar {
   position: fixed;
   top: 0;
   left: 0;
-  width: 250px; /* Feste Breite für Desktop */
+  width: 250px;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -83,194 +45,64 @@ html, body {
   background: transparent;
 }
 
-/* Neue Klasse für die Text-Buttons mit Hintergrund */
-.navButton {
-  width: 100%;
-  padding: 15px 20px;
-  background-image: url('./assets/bilder/navBarBG.png'); /* Das Bild als Hintergrund */
-  background-size: 100% 100%; /* Hintergrundbild deckt den Button vollständig ab */
-  background-position: center; /* Bild zentriert im Button */
-  background-repeat: no-repeat; /* Kein Wiederholen des Bildes */
-  color: white; /* Textfarbe */
-  font-size: 1.2rem; /* Schriftgröße */
-  text-align: left; /* Text linksbündig */
-  font-weight: bold; /* Fettdruck für Text */
-  cursor: pointer; /* Cursor zeigt Hand beim Hover */
-  transition: transform 0.3s ease; /* Animation beim Hover */
-  text-shadow: -1px -1px 0 #000,
-               1px -1px 0 #000,
-               -1px 1px 0 #000,
-               1px 1px 0 #000; /* Gleicher Textschatten wie bei anderen Texten */
+.hamburgerButton {
+  display: none; /* Wird auf mobilen Geräten angezeigt */
 }
 
-.navButton:hover {
-  transform: scale(1.05); /* Leicht vergrößern beim Hover */
-}
-
-.logoContainer {
+.buttonContainer {
   display: flex;
   flex-direction: column;
   gap: 2vh;
-  margin-bottom: 2vh;
+}
+
+.logoContainer {
   cursor: pointer;
 }
 
 .logo {
   width: 6vw;
   height: auto;
-  transition: transform 0.3s ease; /* Für Hover-Animation */
+  transition: transform 0.3s ease;
 }
 
 .logo:hover {
-  transform: scale(1.1); /* Vergrößern beim Hover */
+  transform: scale(1.1);
 }
 
-/* Soziale Medien Icons mit Hover-Animation und kombiniertem Verhalten */
-.socialsContainer {
-  position: absolute;
-  top: 18vh;
-  right: 17vw;
-  display: flex;
-  flex-direction: row;
-  gap: 1vw;
-  z-index: 3;
-}
-
-.socialLink {
-  position: relative;
-  display: inline-block;
-  text-decoration: none;
-  transition: transform 0.3s ease; /* Für Hover-Animation */
-}
-
-.socialLink:hover {
-  transform: scale(1.1); /* Vergrößern beim Hover */
-}
-
-.iconWrapper {
-  position: relative;
-  display: flex;
-  align-items: center;  /* Vertikales Zentrieren */
-  justify-content: center; /* Horizontales Zentrieren */
-  width: 4vw; /* Stelle sicher, dass die Breite gleich der Box ist */
-  height: auto;
-}
-
-/* Hintergrundbild für die Buttons */
-.buttonBG, .buttonBG2 {
-  position: absolute;
-  top: -8px;
-  left: -8px;
-  width: 120%; /* Hintergrund passt sich an den Container an */
-  height: 120%; /* Hintergrund füllt den gesamten Container */
-  z-index: -1; /* Hintergrund bleibt hinter dem Icon */
-}
-
-/* Social Media Icons */
-.socialIcon {
-  width: 4vw; /* Icon-Größe */
-  height: auto;
-  cursor: pointer;
-  z-index: 1; /* Über dem Hintergrund */
-  transition: transform 0.3s ease; /* Für Hover-Animation */
-}
-
-/* Das Overlay für die ListingBoxes */
-.listingOverlay {
-  position: absolute;
-  top: 17.3vh;
-  left: 61%;
-  transform: translateX(-50%);
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Zwei Spalten */
-  grid-template-rows: repeat(3, auto); /* Drei Reihen */
-  gap: 0px;
-  z-index: 999;
-}
-
-/* Boxen */
-.ListingBox, .ListingBox2, .ListingBox3, .ListingBox4, .ListingBox5, .ListingBox6 {
-  width: 90%;
-  max-width: 250px;
-  height: auto;
-  position: relative;
-  cursor: pointer;
-  transition: transform 0.3s ease; /* Für Hover-Animation */
-}
-
-.ListingBox:hover, .ListingBox2:hover, .ListingBox3:hover, .ListingBox4:hover, .ListingBox5:hover, .ListingBox6:hover {
-  transform: scale(1.1); /* Vergrößern beim Hover */
-}
-
-/* Bilder in den Boxen */
-.ListingBoxImage {
+.navButton {
   width: 100%;
-  height: auto;
-  object-fit: cover;
-}
-
-.ListingText {
-  position: absolute;
-  top: 30%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  padding: 15px 20px;
+  background-image: url('./assets/bilder/navBarBG.png');
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
   color: white;
-  font-size: 1.5rem;
-  text-align: center; /* Mittelbündig */
+  font-size: 1.2rem;
+  text-align: left;
   font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.3s ease;
   text-shadow: -1px -1px 0 #000,
                1px -1px 0 #000,
                -1px 1px 0 #000,
-               1px 1px 0 #000; /* Gleicher Schatten wie bei anderen Texten */
-  font-family: 'AeogoPixellated', sans-serif; /* Gleiche Schriftart */
+               1px 1px 0 #000;
 }
 
-/* Schild Bild und Charakterbild etc. wie gehabt */
-
-.signImageContainer {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  position: absolute;
-  top: 10vh;
-  width: 100%;
-  z-index: 1;
-  padding: 5vh 0;
+.navButton:hover {
+  transform: scale(1.05);
 }
 
-.signImage {
-  width: 80vw;
-  max-height: 90vh;
-}
-
-.charImageContainer {
-  display: flex;
-  justify-content: flex-end;
-  position: absolute;
-  left: 55%;
-  top: 30vh;
-  width: 50%;
-  z-index: 4;
-  padding: 2vh 0;
-  pointer-events: none;
-}
-
-.charImage {
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-}
-
+/* Seitenbilder */
 .sideImageContainer {
   position: fixed;
   top: 0;
-  left: 0; /* Align left */
+  left: 0;
   height: 100vh;
   z-index: 4;
 }
 
 .sideImage {
-  width: 250px; /* Same as .buttonContainer width */
+  width: 250px;
   height: 100%;
   object-fit: cover;
 }
@@ -278,111 +110,38 @@ html, body {
 .mirroredImageContainer {
   position: fixed;
   top: 0;
-  right: -8vw;
-  height: 110vh;
+  right: 0;
+  height: 100vh;
   z-index: 4;
   transform: scaleX(-1);
 }
 
 .mirroredSideImage {
-  height: 100%;
-  width: auto;
-}
-
-.textField {
-  position: absolute;
-  top: 9vh;
-  left: 16%;
-  width: 60%;
-  z-index: 5;
-  font-size: 4rem;
-  color: white;
-  transform: rotate(-5deg);
-  animation: gentleScale 1.4s ease-in-out infinite; 
-  font-family: 'AeogoPixellated', sans-serif;
-  text-shadow: -2px -2px 0 #000,
-               2px -2px 0 #000,
-               -2px 2px 0 #000,
-               2px 2px 0 #000;
-}
-
-@keyframes gentleScale {
-  0%,
-  100% {
-    transform: rotate(-5deg) scale(1);
-  }
-  50% {
-    transform: rotate(-5deg) scale(1.05);
-  }
-}
-
-.content {
-  position: relative;
-  z-index: 1;
-  min-height: 100vh;
-  padding: 2vh 5vw;
-  background-color: transparent;
-  color: #333;
-}
-
-.overlayContainer {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  z-index: 2;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.overlayImage {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
+  width: 250px;
   height: 100%;
   object-fit: cover;
-  z-index: 2;
-}
-
-/* Tokenomics Section */
-.tokenomicsSection {
-  position: relative;
-  min-height: 100vh;
-  padding: 2vh 5vw;
-  background-color: #f5f5f5;
-  color: #333;
-  z-index: 1;
-}
-
-.tokenomicsSection h2 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-}
-
-.tokenomicsSection p {
-  font-size: 1.2rem;
-  line-height: 1.6;
 }
 
 /* Responsive Styles für mobile Geräte */
 @media (max-width: 768px) {
-  /* Verstecke das gespiegelte Bild auf mobilen Geräten */
-  .mirroredImageContainer {
-    display: none;
+  /* Navbar Anpassungen */
+  .navbar {
+    width: 100%;
+    height: auto;
+    background: transparent;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 5;
   }
 
-  /* Verstecke das SideimageContainer auf mobilen Geräten */
-  .sideImageContainer {
-    display: none;
-  }
-
-  /* Hamburger Menü Button */
   .hamburgerButton {
+    display: block;
     position: fixed;
     top: 1vh;
     left: 1vw;
-    width: 20px; /* Verkleinert die Breite */
-    height: 20px; /* Verkleinert die Höhe */
+    width: 30px;
+    height: 30px;
     z-index: 6;
     display: flex;
     flex-direction: column;
@@ -392,79 +151,45 @@ html, body {
 
   .hamburgerButton div {
     width: 100%;
-    height: 3px; /* Dünnere Linien */
+    height: 3px;
     background-color: white;
     border-radius: 2px;
-    transition: all 0.3s ease;
   }
 
-  /* Verstecke die normale Navbar und nutze das Sideimage als Hintergrund */
   .buttonContainer {
     position: fixed;
     top: 0;
     left: -100%;
-    width: 110vw; /* Halbierte Breite der Navbar */
-    height: 110vh; /* Halbierte Höhe */
-    background-image: url('./assets/bilder/baum.png'); /* Baum als Hintergrund */
-    background-size: contain; /* Verhindert, dass der Baum abgeschnitten wird */
-    background-position: bottom center; /* Bild wird am unteren Rand zentriert */
-    background-repeat: none;
+    width: 80%;
+    height: 100vh;
+    background-image: url('./assets/bilder/baum.png');
+    background-size: cover;
+    background-position: center;
     flex-direction: column;
-    align-items: center; /* Zentriert die Elemente */
-    padding-top: 2.5vh; /* Verringerter Padding-Abstand */
-    transform: translateX(-12rem); /* Entsprechend angepasst */
+    align-items: center;
+    padding-top: 5vh;
     transition: left 0.3s ease;
-    gap: 2.5vh; /* Verringerter Abstand zwischen den Buttons */
     z-index: 5;
   }
 
-  /* Wenn die Navbar geöffnet ist */
   .navbar.open .buttonContainer {
     left: 0;
   }
 
-  /* Animierung des Hamburger Buttons zu einem 'X' */
-  .navbar.open .hamburgerButton div:nth-child(1) {
-    transform: rotate(45deg) translate(3px, 3px);
-  }
-
-  .navbar.open .hamburgerButton div:nth-child(2) {
-    opacity: 0;
-  }
-
-  .navbar.open .hamburgerButton div:nth-child(3) {
-    transform: rotate(-45deg) translate(3px, -3px);
-  }
-
-  /* Anpassungen für die NavButtons im mobilen Menü */
   .navButton {
-    width: 40%; /* Halbiert die Breite */
-    margin: 0 auto;
-    background-size: contain;
-    background-position: left center;
-    padding: 8px 10px; /* Reduziertes Padding */
-    font-size: 0.75rem; /* Kleinere Schriftgröße */
-    text-align: center; /* Zentriere den Text */
+    width: 80%;
+    margin: 1vh 0;
+    text-align: center;
   }
 
-  /* Optionale Anpassungen für das Logo innerhalb der Navbar */
-  .navbar.open .logoContainer {
-    width: 40%; /* Halbierte Größe */
-    display: flex;
-    justify-content: center;
-    margin-bottom: 1vh;
-    margin-left: 22vw; /* Fügt Abstand nach links hinzu */
-  }
-  
-
-  .navbar.open .logoContainer img {
-    width: 100%;
-    max-width: 100px; /* Kleinere maximale Breite */
+  .sideImageContainer,
+  .mirroredImageContainer {
+    display: none;
   }
 
-  /* Anpassungen für das Logo */
-  .logoContainer {
-    position: static; /* Entfernt die feste Positionierung */
-    cursor: pointer;
+  /* Anpassung der Sektoren auf mobilen Geräten */
+  .section {
+    min-height: auto;
+    scroll-margin-top: 60px; /* Gleich wie oben, für Konsistenz */
   }
 }
