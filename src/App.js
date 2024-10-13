@@ -9,11 +9,14 @@ import LogoImage from './assets/bilder/Logo.png'; // Logo
 // Platzhalterbilder für die Sektoren
 import Sektor1Image from './assets/bilder/Toppage.webp';
 import Sektor2Image from './assets/bilder/Liane.png';
-import Sektor3Image from './assets/bilder/RoadZeichen.webp';
+import Sektor3Image from './assets/bilder/Roadmap Neu.webp';
 import Sektor4Image from './assets/bilder/Pie.png';
 
+// Importiere das Char.webp Bild
+import CharImage from './assets/bilder/Char.webp';
+
 function App() {
-  const sectorRefs = [useRef(null), useRef(null), useRef(null), useRef(null), useRef(null)]; // Referenzen für die Sektoren
+  const sectorRefs = [useRef(null), useRef(null), useRef(null), useRef(null)]; // Referenzen für die Sektoren
 
   const [isNavOpen, setIsNavOpen] = useState(false);
 
@@ -88,7 +91,6 @@ function App() {
             HOW TO BUY
           </div>
 
-
           <div
             className="navButton"
             style={{ backgroundImage: `url(${navBarBG})` }}
@@ -131,8 +133,10 @@ function App() {
       {/* Sektoren */}
       <div className="sectionsContainer">
         {/* Sektor 1 */}
-        <div ref={sectorRefs[0]} className="section">
+        <div ref={sectorRefs[0]} className="section sector1Container">
           <img src={Sektor1Image} alt="Sektor 1" className="sectorImage" />
+          {/* Char Image */}
+          <img src={CharImage} alt="Char" className="charImage" />
         </div>
         {/* Sektor 2 */}
         <div ref={sectorRefs[1]} className="section">
@@ -140,11 +144,11 @@ function App() {
         </div>
         {/* Sektor 3 */}
         <div ref={sectorRefs[2]} className="section">
-        <img src={Sektor3Image} alt="Sektor 3" className="sectorImage" />
+          <img src={Sektor3Image} alt="Sektor 3" className="sectorImage" />
         </div>
-        {/* Sektor 3 */}
+        {/* Sektor 4 */}
         <div ref={sectorRefs[3]} className="section">
-        <img src={Sektor4Image} alt="Sektor 4" className="sectorImage" />
+          <img src={Sektor4Image} alt="Sektor 4" className="sectorImage" />
         </div>
       </div>
     </div>
