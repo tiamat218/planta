@@ -12,7 +12,7 @@ html, body {
   background-image: url('./assets/bilder/Himmel2.jpg');
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center; /* Adjusted from 'top center' to 'center' */
+  background-position: center;
 }
 
 .sectionsContainer {
@@ -22,6 +22,7 @@ html, body {
   padding: 0;
 }
 
+/* Section Styles */
 .section {
   margin: 0;
   padding: 0;
@@ -36,7 +37,6 @@ html, body {
   padding: 0;
 }
 
-/* Adjustments for sector1Container and charImage */
 .sector1Container {
   position: relative;
   overflow: visible;
@@ -44,43 +44,26 @@ html, body {
 
 .charImage {
   position: absolute;
-  width: 10%;
+  width: 20%;
   height: auto;
-  bottom: 0; /* Adjusted from '-5%' to '0' */
-  left: 50%;
+  bottom: -5%;
+  left: 80%;
   transform: translateX(-50%);
-}
-
-@media (max-width: 768px) {
-  .charImage {
-    width: 20%; /* Increased size for better visibility */
-  }
 }
 
 /* Navbar Styles */
 .navbar {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 15%;
-  min-width: 150px; /* Min-width reduced for better adaptation */
+  top: -3.6vh;
+  left: 0.7%;
+  width: 11%;
+  min-width: 150px;
   height: 100vh;
   display: flex;
   flex-direction: column;
   padding-top: 5vh;
-  z-index: 10; /* Adjusted Z-Index */
+  z-index: 10;
   background: transparent;
-}
-
-.hamburgerButton {
-  display: none;
-}
-
-.buttonContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 2vh;
-  align-items: center;
 }
 
 .logoContainer {
@@ -88,11 +71,11 @@ html, body {
 }
 
 .logo {
-  width: 80%;
-  max-width: 150px; /* Added max-width */
+  width: 60%;
+  max-width: 150px;
   height: auto;
+  margin: 0 auto;
   transition: transform 0.3s ease;
-  margin: 0 auto; /* Centered logo */
 }
 
 .logo:hover,
@@ -100,7 +83,6 @@ html, body {
   transform: scale(1.1);
 }
 
-/* Improved readability of navigation buttons */
 .navButton {
   width: 100%;
   padding: 0.75em 1em;
@@ -109,18 +91,19 @@ html, body {
   background-position: center;
   background-repeat: no-repeat;
   color: white;
-  font-size: 1rem; /* Reduced font size */
-  text-align: left;
+  font-size: 1rem;
+  text-align: right;
   font-weight: bold;
   cursor: pointer;
-  transition: transform 0.3s ease;
+  margin: 1vh;
+  margin-left: -6vh;
+  word-wrap: break-word;
   text-shadow:
     -1px -1px 0 #000,
      1px -1px 0 #000,
     -1px  1px 0 #000,
      1px  1px 0 #000;
-  word-wrap: break-word; /* Optional, to wrap long words */
-  margin: 0;
+  transition: transform 0.3s ease;
 }
 
 .navButton:hover,
@@ -129,182 +112,132 @@ html, body {
   transform: scale(1.05);
 }
 
-/* Side images */
+/* Side Image Styles */
 .sideImageContainer,
 .mirroredImageContainer {
   position: fixed;
   top: 0;
   height: 100vh;
-  width: 15%;
-  min-width: 150px; /* Min-width reduced */
-  z-index: 5; /* Adjusted Z-Index */
+  width: 8%;
+  min-width: 150px;
+  z-index: 5;
 }
 
 .sideImageContainer {
-  left: 0;
+  left: -4%;
 }
 
-.mirroredImageContainer {
-  right: 0;
-  transform: scaleX(-1);
-}
+
 
 .sideImage,
 .mirroredSideImage {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: none;
 }
 
-/* Responsive Styles for different screen sizes */
-@media (max-width: 1024px) {
-  .navbar,
-  .sideImageContainer,
-  .mirroredImageContainer {
-    width: 20%;
-    min-width: 120px;
-  }
-}
-
+/* Mobile-Specific Styles */
 @media (max-width: 768px) {
-  /* Navbar Adjustments */
-  .navbar {
-    width: 100%;
-    height: auto;
-    top: 0;
-    left: 0;
-    position: relative; /* Remove fixed positioning */
-    z-index: 10;
-  }
-
-  .hamburgerButton {
-    display: block;
-    position: fixed;
-    top: 1vh;
-    left: 1vw;
-    width: 30px;
-    height: 30px;
-    z-index: 11;
-    flex-direction: column;
-    justify-content: space-around;
-    cursor: pointer;
-  }
-
-  .hamburgerButton div {
-    width: 100%;
-    height: 3px;
-    background-color: white;
-    border-radius: 2px;
-  }
-
-  .buttonContainer {
-    position: fixed;
-    top: 0;
-    left: -100%;
-    width: 80%;
-    height: 100vh;
-    background-image: url('./assets/bilder/baum.png');
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 5vh;
-    transition: left 0.3s ease;
-    z-index: 10;
-  }
-
-  .navbar.open .buttonContainer {
-    left: 0;
-  }
-
-  .navButton {
-    width: 80%;
-    margin: 1vh 0;
-    text-align: center;
-    font-size: 0.9rem; /* Font size adjusted for mobile devices */
-  }
-
-  /* Adjust logo size */
-  .logo {
-    width: 50%;
-  }
-
-  /* Hide side images */
+  /* Navbar und Side Images ausblenden */
+  .navbar,
   .sideImageContainer,
   .mirroredImageContainer {
     display: none;
   }
 
-  /* Section adjustment */
-  .section {
-    margin: 0;
-    padding: 0;
+  /* CharImage Anpassungen */
+  .charImage {
+    width: 20%;
   }
 
-  /* CharImage adjustments */
-  .charImage {
-    width: 20%; /* Increased size for better visibility */
+  /* Mobile Logo oben links */
+  .mobileLogoContainer {
+    display: block;
+    position: fixed;
+    top: 1vh;
+    left: 1vh;
+    z-index: 10;
+    cursor: pointer;
+  }
+
+  .mobileLogo {
+    width: 70px;
+    height: auto;
+    transition: transform 0.3s ease;
+  }
+
+  .mobileLogo:hover,
+  .mobileLogo:focus {
+    transform: scale(1.1);
+  }
+
+  /* Button Container für X und Telegram - oben rechts */
+  .desktopButtonContainer {
+    display: none;
+  }
+
+  .mobileButtonContainer {
+    position: fixed;
+    top: 1vh;
+    right: 1vh;
+    display: flex;
+    gap: 1vh;
+    z-index: 10;
+  }
+
+  .mobileButton {
+    width: 7vh;
+    height: 7vh;
+    cursor: pointer;
   }
 }
 
-/* Hover effects for touch devices */
+/* Desktop-Specific Styles */
+@media (min-width: 769px) {
+  /* Mobile Logo auf Desktop ausblenden */
+  .mobileLogoContainer,
+  .mobileButtonContainer {
+    display: none;
+  }
+
+  .desktopButtonContainer {
+    position: fixed;
+    top: 2vh;
+    right: 2vh;
+    display: flex;
+    gap: 1vh;
+    z-index: 10;
+  }
+
+  .desktopButton {
+    width: 80px;
+    height: 80px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+
+  .desktopButton:hover,
+  .desktopButton:focus {
+    transform: scale(1.1);
+  }
+}
+
+/* Hover Effects for Touch Devices */
 @media (hover: none) {
-  .navButton:hover,
-  .logo:hover {
+  .logo:hover,
+  .mobileLogo:hover {
     transform: none;
   }
 
-  .navButton:active,
-  .logo:active {
+  .logo:active,
+  .mobileLogo:active {
     transform: scale(1.05);
   }
 }
 
-/* Z-Index and overlapping corrected */
-.navbar {
-  z-index: 10;
-}
-
-.sideImageContainer,
-.mirroredImageContainer {
-  z-index: 5;
-}
-
-/* Functionality of the hamburger menu */
-.buttonContainer {
-  left: -100%;
-}
-
-.navbar.open .buttonContainer {
-  left: 0;
-}
-
-/* Font sizes and spacing adjusted */
+/* Font Sizes and Spacing */
 .navButton {
   font-size: 1rem;
   padding: 0.75em 1em;
-}
-
-@media (max-width: 768px) {
-  .navButton {
-    font-size: 0.9rem;
-    padding: 0.5em 0.75em;
-  }
-}
-
-/* Elements centered */
-.buttonContainer {
-  align-items: center;
-}
-
-.navButton {
-  text-align: center;
-}
-
-/* Remove default margins and padding from sections and images */
-.section,
-.sectorImage {
-  margin: 0;
-  padding: 0;
 }

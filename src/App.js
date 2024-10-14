@@ -1,125 +1,128 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import './global.css';
 import './App.css';
 
-import BaumImage from './assets/bilder/baum.png'; // Seitenbilder
-import navBarBG from './assets/bilder/navBarBG.png'; // Hintergrund für Navbar-Buttons
-import LogoImage from './assets/bilder/Logo.png'; // Logo
+import BaumImage from './assets/bilder/baum.png';
+import navBarBG from './assets/bilder/navBarBG.png';
+import LogoImage from './assets/bilder/Logo.png';
+import XneuImage from './assets/bilder/Xneu.png'; // X Button Image
+import TELEneuImage from './assets/bilder/TeleNEU.png'; // Telegram Button Image
 
-// Platzhalterbilder für die Sektoren
 import Sektor1Image from './assets/bilder/Toppage.webp';
 import Sektor2Image from './assets/bilder/Liane.png';
 import Sektor3Image from './assets/bilder/Roadmap Neu.webp';
 import Sektor4Image from './assets/bilder/Pie.png';
-
-// Importiere das Char.webp Bild
 import CharImage from './assets/bilder/Char.webp';
 
 function App() {
-  const sectorRefs = [useRef(null), useRef(null), useRef(null), useRef(null)]; // Referenzen für die Sektoren
+  const sectorRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
 
-  const [isNavOpen, setIsNavOpen] = useState(false);
-
-  // Funktionen zum Scrollen zu den Sektoren
   const scrollToSector = (index) => {
     if (sectorRefs[index].current) {
       sectorRefs[index].current.scrollIntoView({
         behavior: 'smooth',
         block: 'start',
       });
-      setIsNavOpen(false);
     }
-  };
-
-  const toggleNavbar = () => {
-    setIsNavOpen(!isNavOpen);
   };
 
   return (
     <div className="appContainer">
-      {/* Navbar */}
-      <div className={`navbar ${isNavOpen ? 'open' : ''}`}>
-        {/* Hamburger Menü Button (nur mobil) */}
+      {/* Navbar für größere Bildschirme */}
+      <div className="navbar">
         <div
-          className="hamburgerButton"
-          onClick={toggleNavbar}
-          aria-label="Navigation umschalten"
-          aria-expanded={isNavOpen}
+          className="logoContainer"
+          onClick={() => scrollToSector(0)}
           role="button"
           tabIndex={0}
           onKeyPress={(e) => {
             if (e.key === 'Enter' || e.key === ' ') {
-              toggleNavbar();
+              scrollToSector(0);
             }
           }}
         >
-          <div></div>
-          <div></div>
-          <div></div>
+          <img src={LogoImage} alt="Logo" className="logo" />
         </div>
 
-        {/* Navbar Buttons */}
-        <div className="buttonContainer">
-          {/* Logo */}
-          <div
-            className="logoContainer"
-            onClick={() => scrollToSector(0)}
-            role="button"
-            tabIndex={0}
-            onKeyPress={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                scrollToSector(0);
-              }
-            }}
-          >
-            <img src={LogoImage} alt="Logo" className="logo" />
-          </div>
-
-          {/* Navigationsbuttons */}
-          <div
-            className="navButton"
-            style={{ backgroundImage: `url(${navBarBG})` }}
-            onClick={() => scrollToSector(1)}
-            role="button"
-            tabIndex={0}
-            onKeyPress={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                scrollToSector(1);
-              }
-            }}
-          >
-            HOW TO BUY
-          </div>
-
-          <div
-            className="navButton"
-            style={{ backgroundImage: `url(${navBarBG})` }}
-            onClick={() => scrollToSector(2)}
-            role="button"
-            tabIndex={0}
-            onKeyPress={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                scrollToSector(2);
-              }
-            }}
-          >
-            ROADMAP
-          </div>
-          <div
-            className="navButton"
-            style={{ backgroundImage: `url(${navBarBG})` }}
-            onClick={() => scrollToSector(3)}
-            role="button"
-            tabIndex={0}
-            onKeyPress={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                scrollToSector(3);
-              }
-            }}
-          >
-            TOKENOMICS
-          </div>
+        {/* Navigationsbuttons */}
+        <div
+          className="navButton"
+          style={{ backgroundImage: `url(${navBarBG})` }}
+          onClick={() => scrollToSector(1)}
+          role="button"
+          tabIndex={0}
+          onKeyPress={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              scrollToSector(1);
+            }
+          }}
+        >
+          HOW TO BUY
         </div>
+
+        <div
+          className="navButton"
+          style={{ backgroundImage: `url(${navBarBG})` }}
+          onClick={() => scrollToSector(2)}
+          role="button"
+          tabIndex={0}
+          onKeyPress={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              scrollToSector(2);
+            }
+          }}
+        >
+          ROADMAP
+        </div>
+        <div
+          className="navButton"
+          style={{ backgroundImage: `url(${navBarBG})` }}
+          onClick={() => scrollToSector(3)}
+          role="button"
+          tabIndex={0}
+          onKeyPress={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              scrollToSector(3);
+            }
+          }}
+        >
+          TOKENOMICS
+        </div>
+      </div>
+
+      {/* Mobile Logo oben links */}
+      <div
+        className="mobileLogoContainer"
+        onClick={() => scrollToSector(0)}
+        role="button"
+        tabIndex={0}
+        onKeyPress={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            scrollToSector(0);
+          }
+        }}
+      >
+        <img src={LogoImage} alt="Logo" className="mobileLogo" />
+      </div>
+
+      {/* Desktop Button Container - oben rechts */}
+      <div className="desktopButtonContainer">
+        <a href="https://x.com" target="_blank" rel="noopener noreferrer">
+          <img src={XneuImage} alt="X Button" className="desktopButton" />
+        </a>
+        <a href="https://telegram.com" target="_blank" rel="noopener noreferrer">
+          <img src={TELEneuImage} alt="Telegram Button" className="desktopButton" />
+        </a>
+      </div>
+
+      {/* Mobile Button Container - oben rechts */}
+      <div className="mobileButtonContainer">
+        <a href="https://x.com" target="_blank" rel="noopener noreferrer">
+          <img src={XneuImage} alt="X Button" className="mobileButton" />
+        </a>
+        <a href="https://telegram.com" target="_blank" rel="noopener noreferrer">
+          <img src={TELEneuImage} alt="Telegram Button" className="mobileButton" />
+        </a>
       </div>
 
       {/* Seitenbilder */}
@@ -132,21 +135,16 @@ function App() {
 
       {/* Sektoren */}
       <div className="sectionsContainer">
-        {/* Sektor 1 */}
         <div ref={sectorRefs[0]} className="section sector1Container">
           <img src={Sektor1Image} alt="Sektor 1" className="sectorImage" />
-          {/* Char Image */}
           <img src={CharImage} alt="Char" className="charImage" />
         </div>
-        {/* Sektor 2 */}
         <div ref={sectorRefs[1]} className="section">
           <img src={Sektor2Image} alt="Sektor 2" className="sectorImage" />
         </div>
-        {/* Sektor 3 */}
         <div ref={sectorRefs[2]} className="section">
           <img src={Sektor3Image} alt="Sektor 3" className="sectorImage" />
         </div>
-        {/* Sektor 4 */}
         <div ref={sectorRefs[3]} className="section">
           <img src={Sektor4Image} alt="Sektor 4" className="sectorImage" />
         </div>
